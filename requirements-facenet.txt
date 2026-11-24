@@ -1,0 +1,19 @@
+# Optional CPU-only FaceNet backend (RECOGNITION_BACKEND=facenet). The base requirements.txt stays light.
+#
+# Do NOT run "pip install -r requirements-facenet.txt" directly. facenet-pytorch 2.6.0's package metadata still
+# demands numpy<2, Pillow<10.3, torch<2.3 and torchvision<0.18, which conflict with this project's pins
+# (numpy 2.1.3, Pillow 11.3.0). pip would refuse (ResolutionImpossible) or, worse, downgrade them. Install in three
+# steps instead (docs/recognition.md has the PowerShell commands):
+#   1. pip install -r requirements.txt
+#   2. pip install torch==2.6.0 torchvision==0.21.0 requests==2.32.3 tqdm==4.67.1     (normal install: pulls PyTorch's own dependencies)
+#   3. pip install --no-deps facenet-pytorch==2.6.0                                   (skips only its stale version bounds)
+# On Windows the PyPI wheels of torch / torchvision are CPU-only builds, so no extra index is needed.
+-r requirements.txt
+
+torch==2.6.0
+torchvision==0.21.0
+# facenet-pytorch imports requests and tqdm at run time:
+requests==2.32.3
+tqdm==4.67.1
+# Pure-Python wheel. Its numpy / Pillow / torch bounds are deliberately bypassed with --no-deps (step 3).
+facenet-pytorch==2.6.0

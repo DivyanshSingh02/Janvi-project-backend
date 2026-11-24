@@ -1,0 +1,11 @@
+from typing import Literal
+
+from pydantic import BaseModel
+
+
+class HealthResponse(BaseModel):
+    status: Literal["ok", "degraded"]
+    version: str
+    database: Literal["ok", "unavailable"]
+    storage: Literal["ok", "unavailable"]
+    recognition: Literal["unconfigured", "ready"]

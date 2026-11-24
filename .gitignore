@@ -1,0 +1,19 @@
+venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+.coverage
+.env
+storage/
+*.log
+# Face recognition: model weights and evaluation datasets must never be committed
+models/recognition/
+evaluation-datasets/
+*.pt
+*.pth
+*.part
+
+.venv/
+.env
+git-status.txt
